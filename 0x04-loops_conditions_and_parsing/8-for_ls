@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-#This script displays files in current directory
-List=$(ls)
-for i in $List
-do
-	echo "$i" | cut -d - -f 2
+# prints files in the current directory in a specific format
+for f in *; do
+    echo "$f" | cut -d "-" -f 2
 done
+Footer
+

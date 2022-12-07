@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
-#Script that displays "To infinity and beyond" indefinately
-#and "I am invincible!!!" when recieving SIGTERM
-while true
-do
-	echo "To infinity and beyond"
-  	sleep 2
-	trap 'echo "I am invincible!!!"' SIGTERM
+# a loop that displays a string indefinitely using trap to print a msg
+trap 'echo "I am invincible!!!"' SIGTERM
+while :; do
+    echo "To infinity and beyond"
+    sleep 2
 done
