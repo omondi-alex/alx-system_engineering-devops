@@ -38,6 +38,8 @@ defaults
 		bind *:80
 		bind *:443 ssl crt /etc/letsencrypt/test.pem
 		mode http
+		#redirect all http to https
+		http-request redirect scheme https code 301 unless { ssl_fc }
 		default_backend web-backend
 
 	#backend setup for my two webservers
