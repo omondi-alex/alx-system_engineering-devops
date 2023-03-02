@@ -1,31 +1,17 @@
 #!/usr/bin/python3
-""" How many subs? """
+''' task 0 module'''
+
+import requests
+import sys
 
 
 def number_of_subscribers(subreddit):
-    """ Returns subscriber count of subreddit or 0 """
-    from requests import get
+    '''gets num of subs of a subreddit'''
+    headers = {'User-agent': 'test'}
+    subs = requests.get('https://www.reddit.com/r/{}/about.json'.format(
+        sys.argv[1]), allow_redirects=False, headers=headers)
 
-    url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
-
-    headers = {'user-agent': 'my-app/0.0.1'}
-
-    r = get(url, headers=headers, allow_redirects=False)
-
-    if r.status_code != 200:
+    if subs.status_code == 200:
+        return (subs.json()['data']['subscribers'])
+    else:
         return 0
-
-    try:
-        js = r.json()
-
-    except ValueError:
-        return 0
-
-    data = js.get("data")
-
-    if data:
-        sub_count = data.get("subscribers")
-        if sub_count:
-            return sub_count
-
-    return 0
