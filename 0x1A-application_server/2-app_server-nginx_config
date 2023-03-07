@@ -1,6 +1,5 @@
-server {
-	listen 80;
-	server_name web-01.fazisols.tech;
+server {	listen 80;
+	server_name web-01.thedomain.tech;
 	
 	location / {
 		include proxy_params;
